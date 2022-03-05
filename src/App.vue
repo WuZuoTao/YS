@@ -1,28 +1,51 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <Pager />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import Pager from "./components/views/index/index.vue";
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
-  }
-}
+    Pager,
+  },
+  data() {
+    return {
+
+    };
+  },
+
+};
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+* {
+  padding: 0px;
+  margin: 0px;
+  list-style: none;
 }
-</style>
+html{
+  width: 100%;
+  height: 100%;
+}
+body {
+  min-width: 14.4rem;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  
+}
+#app {
+  width: 100%;
+  height: 100%;
+}
+.img_show{
+  opacity: 0;
+}
+.img_show:hover{
+  opacity: 1;
+  cursor: pointer;
+}
+</style>>
