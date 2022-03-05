@@ -20,6 +20,9 @@
         <div class="Sotconter">
           <five />
         </div>
+        <div class="Sotconter">
+          <six />
+        </div>
       </div>
     </div>
   </div>
@@ -34,6 +37,7 @@ import dht from "../dht/index.vue";
 import three from "../three/index.vue";
 import four from "../four/index.vue";
 import five from "../five/index.vue";
+import six from "../six/index.vue"
 export default {
   name: "index",
   components: {
@@ -43,6 +47,7 @@ export default {
     three,
     four,
     five,
+    six,
     loding,
     spLoding,
   },

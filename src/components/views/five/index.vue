@@ -24,7 +24,7 @@
 
 <script>
 export default {
-  name: "tow",
+  name: "five",
   data() {
       return {
           nrisShow:document.getElementsByClassName('nrisShow'),
