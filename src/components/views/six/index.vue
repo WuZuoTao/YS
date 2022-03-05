@@ -67,14 +67,12 @@ export default {
       num: 0,
       lbt: document.getElementsByClassName("lbt_class"),
       imgBtn: document.getElementsByClassName("imgBtn"),
+      time: "",
     };
   },
-  //   mounted(){
-  //       setInterval(() => {
-  //           this.lbtBtnFun()
-  //           this.dhtBtnFun(this.num)
-  //       }, 2000);
-  //   },
+  mounted() {
+      this.timeFun()
+  },
   methods: {
     lbtBtnFun(data, Number) {
       if (Number || Number == 0) {
@@ -123,7 +121,23 @@ export default {
         }
       }
     },
+    timeFun() {
+      if (this.time) {
+        clearInterval(this.time);
+      }
+     console.log('我在执行')
+      this.time = setInterval(() => {
+        this.lbtBtnFun(1);
+        this.dhtFun(this.num);
+      }, 5000);
+    },
   },
+  watch: {
+      num() {
+        this.timeFun();
+        console.log('监听到Num变化了')
+      },
+    },
 };
 </script>
 

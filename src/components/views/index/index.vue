@@ -110,7 +110,7 @@ export default {
           }
         } else if (Win.wheelDelta < 0) {
           transFormNum = Math.round(oldValue + -Num);
-          if (transFormNum >= -4885) {
+          if (transFormNum >= -3770) {
             page_conter.style.transform = `translate3d(0,${transFormNum}px,0px)`;
             this.Time = new Date();
           }
