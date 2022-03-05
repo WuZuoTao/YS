@@ -17,6 +17,9 @@
         <div class="Sotconter">
           <four />
         </div>
+        <div class="Sotconter">
+          <five />
+        </div>
       </div>
     </div>
   </div>
@@ -30,6 +33,7 @@ import spLoding from "../spding/index.vue";
 import dht from "../dht/index.vue";
 import three from "../three/index.vue";
 import four from "../four/index.vue";
+import five from "../five/index.vue";
 export default {
   name: "index",
   components: {
@@ -38,6 +42,7 @@ export default {
     dht,
     three,
     four,
+    five,
     loding,
     spLoding,
   },
@@ -52,18 +57,18 @@ export default {
         win_width: "",
         win_height: "",
       },
-      Time:""
+      Time: "",
     };
   },
-  beforeMount(){
-    this.$bus.$on('soLoding',(data) => {
-      this.spLoding(data)
-    })
+  beforeMount() {
+    this.$bus.$on("soLoding", (data) => {
+      this.spLoding(data);
+    });
   },
   mounted() {
     this.win.win_width = document.documentElement.clientWidth;
     this.win.win_height = document.documentElement.clientHeight;
-    this.Time = new Date()
+    this.Time = new Date();
     window.onresize = () => {
       return (() => {
         this.win.win_width = document.documentElement.clientWidth;
@@ -83,34 +88,34 @@ export default {
       document.documentElement.style.fontSize = font_size + "px";
     },
     onwheelFun(Win) {
-      let oldTime = new Date()
-      if((oldTime - this.Time) > 500){
-      let page_conter = document.getElementsByClassName("page_conter")[0];
-      let html = document.documentElement;
-      let Num = 10.8 * Number.parseFloat(html.style.fontSize);
-      let transForm = page_conter.style.transform;
-      let oldValue = transForm.split(",")[1];
-      let transFormNum;
-      oldValue = Number.parseFloat(oldValue);
+      let oldTime = new Date();
+      if (oldTime - this.Time > 500) {
+        let page_conter = document.getElementsByClassName("page_conter")[0];
+        let html = document.documentElement;
+        let Num = 10.8 * Number.parseFloat(html.style.fontSize);
+        let transForm = page_conter.style.transform;
+        let oldValue = transForm.split(",")[1];
+        let transFormNum;
+        oldValue = Number.parseFloat(oldValue);
         if (Win.wheelDelta > 0) {
           transFormNum = Math.round(oldValue + Num);
           if (transFormNum <= 0) {
             page_conter.style.transform = `translate3d(0,${transFormNum}px,0px)`;
-            this.Time = new Date()
+            this.Time = new Date();
           }
         } else if (Win.wheelDelta < 0) {
           transFormNum = Math.round(oldValue + -Num);
           if (transFormNum >= -4885) {
             page_conter.style.transform = `translate3d(0,${transFormNum}px,0px)`;
-            this.Time = new Date()
+            this.Time = new Date();
           }
         }
-      if (transFormNum < 0) {
-        this.dhl = true;
-        return;
-      } else {
-        this.dhl = false;
-      }
+        if (transFormNum < 0) {
+          this.dhl = true;
+          return;
+        } else {
+          this.dhl = false;
+        }
       }
     },
   },
@@ -147,7 +152,7 @@ export default {
   min-width: 14.4rem;
   width: 100%;
   height: 100%;
-  transition-duration:400ms
+  transition-duration: 400ms;
 }
 .Sotconter {
   width: 100%;
