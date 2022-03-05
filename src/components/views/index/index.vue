@@ -3,7 +3,7 @@
     <div class="page">
       <spLoding v-show="spisshow" @spLoding="spLoding" />
       <loding v-show="isshow" @isLoding="isLoding" />
-      <dht v-show="dhl" />
+      <dht v-show="dhl" :DhlNum="DhlNum" @dhlFun='dhlFun' />
       <div class="page_conter" style="transform: translate3d(0, 0, 0)">
         <div class="Sotconter">
           <firs @isLoding="isLoding" @spLoding="spLoding" />
@@ -37,7 +37,7 @@ import dht from "../dht/index.vue";
 import three from "../three/index.vue";
 import four from "../four/index.vue";
 import five from "../five/index.vue";
-import six from "../six/index.vue"
+import six from "../six/index.vue";
 export default {
   name: "index",
   components: {
@@ -62,6 +62,8 @@ export default {
         win_width: "",
         win_height: "",
       },
+      FSize: "",
+      DhlNum: 0,
       Time: "",
     };
   },
@@ -78,10 +80,14 @@ export default {
       return (() => {
         this.win.win_width = document.documentElement.clientWidth;
         this.win.win_height = document.documentElement.clientHeight;
+        this.FSize = document.documentElement.fontSize;
       })();
     };
   },
   methods: {
+    dhlFun(num){
+      this.DhlNum = num
+    },
     isLoding(data) {
       this.isshow = data;
     },
@@ -106,12 +112,14 @@ export default {
           transFormNum = Math.round(oldValue + Num);
           if (transFormNum <= 0) {
             page_conter.style.transform = `translate3d(0,${transFormNum}px,0px)`;
+            this.DhlNum  = this.DhlNum - 1;
             this.Time = new Date();
           }
         } else if (Win.wheelDelta < 0) {
           transFormNum = Math.round(oldValue + -Num);
           if (transFormNum >= -3770) {
             page_conter.style.transform = `translate3d(0,${transFormNum}px,0px)`;
+            this.DhlNum  = this.DhlNum + 1;
             this.Time = new Date();
           }
         }
@@ -123,6 +131,11 @@ export default {
         }
       }
     },
+    wheelFun() {
+      let page_conter = document.getElementsByClassName("page_conter")[0];
+      let transFormNum = this.DhlNum * Number(-this.win.win_height);
+      page_conter.style.transform = `translate3d(0,${transFormNum}px,0px)`;
+    },
   },
   watch: {
     win: {
@@ -132,8 +145,16 @@ export default {
         document.body.style.width = this.win.win_width + "px";
         document.body.style.height = this.win.win_height + "px";
         this.fontSize();
+        this.wheelFun();
       },
     },
+    DhlNum:{
+      immediate:true,
+      handler(){
+        this.wheelFun();
+        this.$bus.$emit('dhlxh',this.DhlNum)
+      }
+    }
   },
 };
 </script>

@@ -122,20 +122,16 @@ export default {
       }
     },
     timeFun() {
-      if (this.time) {
-        clearInterval(this.time);
-      }
-     console.log('我在执行')
+      clearInterval(this.time);
       this.time = setInterval(() => {
         this.lbtBtnFun(1);
         this.dhtFun(this.num);
-      }, 5000);
+      }, 4000);
     },
   },
   watch: {
       num() {
         this.timeFun();
-        console.log('监听到Num变化了')
       },
     },
 };
